@@ -8,7 +8,8 @@ public class CarAI : MonoBehaviour
     public GameObject[] lights;
     List<GameObject> greens = new List<GameObject>();
     public float speed;
-    bool choosenext = true;
+    public bool choosenext = true;
+    public float rotationspeed;
     void Start()
     {
         lights = GameObject.FindGameObjectsWithTag("Light");
@@ -18,6 +19,7 @@ public class CarAI : MonoBehaviour
 
     void NextGoal ()
     {
+        choosenext = false;
         target = null;
         greens.Clear();
         foreach (GameObject item in lights)
@@ -37,13 +39,14 @@ public class CarAI : MonoBehaviour
         {
             float step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+            var rotation = Quaternion.LookRotation(target.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), Time.deltaTime * speed);
 
             if (Vector3.Distance (transform.position, target.position) < 0.1f)
             {
                 if (choosenext == true)
                 {
                     NextGoal();
-                    choosenext = false;
                 }
             }
         } 
@@ -52,7 +55,6 @@ public class CarAI : MonoBehaviour
             if (choosenext == true)
             {
                 NextGoal();
-                choosenext = false;
             }
 
         }
