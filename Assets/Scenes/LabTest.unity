@@ -450,6 +450,8 @@ MonoBehaviour:
   target: {fileID: 0}
   lights: []
   speed: 3
+  choosenext: 1
+  rotationspeed: 2
 --- !u!1 &1885929139
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,19 +11,9 @@ public class LightsGeneration : MonoBehaviour
 
         for (int i = 0; i < totalobjects; i++)
         {
-            Vector3 position = CreateCircle(centerpoint, 10.0f);
-            Quaternion rotation = Quaternion.FromToRotation(Vector3.forward, centerpoint - position);
-            Instantiate(prefab, position, rotation);
+            float angle = i * Mathf.PI * 2f / 10;
+            Vector3 newPos = new Vector3(Mathf.Cos(angle) * 10, 0, Mathf.Sin(angle) * 10);
+            _ = Instantiate(prefab, newPos, Quaternion.identity);
         }
-    }
-
-    Vector3 CreateCircle(Vector3 centerpoint, float radius)
-    {
-        float angle = Random.value * 360;
-        Vector3 pos;
-        pos.x = centerpoint.x + radius * Mathf.Sin(angle * Mathf.Deg2Rad);
-        pos.y = centerpoint.y;
-        pos.z = centerpoint.z + radius * Mathf.Cos(angle * Mathf.Deg2Rad);
-        return pos;
     }
 }

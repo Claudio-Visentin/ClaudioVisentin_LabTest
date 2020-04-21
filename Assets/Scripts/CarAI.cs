@@ -37,6 +37,7 @@ public class CarAI : MonoBehaviour
     {
         if (target != null && target.gameObject.GetComponent <LightStateMachine> ().state == "Green")
         {
+            Debug.DrawLine(transform.position, target.position, Color.red);
             float step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
             var rotation = Quaternion.LookRotation(target.position - transform.position);
