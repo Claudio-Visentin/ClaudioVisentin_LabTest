@@ -7,8 +7,10 @@ public class LightStateMachine : MonoBehaviour
     Material mat;
     void Awake()
     {
+        //Sets up the material
         mat = GetComponent<MeshRenderer>().material;
 
+        //Randomly picks the first colour
         int firststate = Random.Range(0, 3);
         if (firststate == 0)
         {
@@ -23,6 +25,7 @@ public class LightStateMachine : MonoBehaviour
             StartCoroutine("Red");
         }
     }
+    //Each coroutine leads to the next one and loops, setting the required states
     IEnumerator Green ()
     {
         state = "Green";
