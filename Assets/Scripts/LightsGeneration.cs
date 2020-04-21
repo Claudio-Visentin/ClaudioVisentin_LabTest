@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class LightsGeneration : MonoBehaviour
 {
     public GameObject prefab;
     public int totalobjects = 10;
 
-    void Start()
+    void Awake()
     {
         Vector3 centerpoint = new Vector3(0f, 0f, 0f);
 
@@ -20,11 +19,11 @@ public class LightsGeneration : MonoBehaviour
 
     Vector3 CreateCircle(Vector3 centerpoint, float radius)
     {
-        float ang = Random.value * 360;
+        float angle = Random.value * 360;
         Vector3 pos;
-        pos.x = centerpoint.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
+        pos.x = centerpoint.x + radius * Mathf.Sin(angle * Mathf.Deg2Rad);
         pos.y = centerpoint.y;
-        pos.z = centerpoint.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
+        pos.z = centerpoint.z + radius * Mathf.Cos(angle * Mathf.Deg2Rad);
         return pos;
     }
 }
